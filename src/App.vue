@@ -10,7 +10,7 @@
         <router-link to="/chengji">成绩</router-link>
         <router-link to="/kecheng">课程</router-link>
         
-        <a href="https://github.com/fufu333/4.25Ui.git" target="_blank" class="github-button">GitHub代码仓库</a>
+        <a href="https://github.com/fufu333/4.29UI.git" target="_blank" class="github-button">GitHub代码仓库</a>
       </nav>
       <router-view />
     </div>

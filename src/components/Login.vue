@@ -67,6 +67,7 @@ export default {
 
 .input-group-addon {
   font-size: 2vh;
+  color: #414141 !important;
 }
 
 .username,
@@ -80,6 +81,8 @@ export default {
   border: none;
   background-color: rgba(255, 255, 255, 0.789);
   font-size: 14px;
+  color: #000;
+  
 }
 
 .qwq {
