@@ -23,7 +23,7 @@
                             <span class="course">课程：{{ item.courses }}</span>
                         </div>
                         <van-cell>
-                            <template #value><van-button hairline plain type="primary" style="color:white;background-color:255, 116, 116 !important;height: 4vh;width: 15% !important;">浏览</van-button></template>
+                            <template #value><van-button hairline plain type="primary" style="color:white;background-color:255, 116, 116 !important;height: 4vh;width: 15% !important;" url="https://www.codelover.club/qb/study?currNo=43">浏览</van-button></template>
                         </van-cell>
                     </div>
                     <div class="tag-container">

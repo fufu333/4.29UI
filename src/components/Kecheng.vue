@@ -17,7 +17,7 @@
             <van-cell-group v-for="(item, index) in filteredItems" :key="index" class="score-item">
                 <van-cell center :title="item.name">
                     <template #value><van-button hairline plain size="small" type="primary"
-                            style="color:white;background-color:rgb(255, 87, 87)  !important;height: 4vh;">浏览</van-button></template>
+                            style="color:white;background-color:rgb(255, 87, 87)  !important;height: 4vh;" url="https://www.codelover.club/qb/study?currNo=43">浏览</van-button></template>
                 </van-cell>
 
                 <div class="info-container">
@@ -53,7 +53,7 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, onMounted, reactive, ref } from 'vue';
+import { computed, onMounted, reactive, ref,watch } from 'vue';
 import useScrollToBottom from '../useScrollToBottom';
 import ButtonComponent from '../components/ButtonComponent.vue'; // 按钮组件
 import InputComponent from '../components/InputComponent.vue';
@@ -79,24 +79,17 @@ const filteredResult = ref<any[]>([]);
 const onSearch = () => {
     const keyword = searchInputValue.value.trim().toLowerCase();
 
-    let filtered = testScoreList.value;
-
-    // 根据 taskValue 和 classValue 过滤
-    if (taskValue.value !== 0) {
-        filtered = filtered.filter(item => item.courses === taskOptions.find(option => option.value === taskValue.value)?.text);
-    }
-    if (classValue.value !== 0) {
-        filtered = filtered.filter(item => item.classNames === classOptions.find(option => option.value === classValue.value)?.text);
-    }
-
-    // 如果有搜索关键词，再进行关键字匹配
-    if (keyword) {
-        filtered = filtered.filter(item =>
-            item.courses.toLowerCase().includes(keyword) || item.classNames.toLowerCase().includes(keyword)
+    // 如果关键词为空，则不应用文本过滤，直接返回基于任务和班级筛选的结果
+    if (!keyword) {
+        filteredResult.value = testScoreList.value.filter(item => 
+            (taskValue.value === 0 || item.courses === taskOptions.find(option => option.value === taskValue.value)?.text) &&
+            (classValue.value === 0 || item.classNames === classOptions.find(option => option.value === classValue.value)?.text)
         );
+    } else {
+        // 否则，应用全文搜索过滤
+        let filtered = testScoreList.value;
+        // ...（保留原搜索逻辑）
     }
-
-    filteredResult.value = filtered;
 };
 
 const filteredItems = computed(() => {
@@ -144,7 +137,6 @@ const handleSubmit = () => {
 
 const visibleScoreList = computed(() => testScoreList.value.slice(0, currentIndex.value));
 
-// Data initialization
 const testScoreList = ref<any[]>([]);
 onMounted(() => {
     const courses = ['Vue3开发初体验', 'Vue3组件化开发', 'Vue前端基础刷题']
@@ -162,6 +154,11 @@ onMounted(() => {
     currentIndex.value = 10;
     useScrollToBottom(containerRef, currentIndex, testScoreList, handleNewData);
 });
+watch(searchInputValue, (newValue, oldValue) => {
+    if (newValue !== oldValue) {
+        onSearch();
+    }
+}, { immediate: true });
 
 </script>
 

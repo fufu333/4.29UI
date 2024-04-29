@@ -12,16 +12,16 @@
     </van-row>
 
     <div class="inline-cell">
-      <van-cell title="姓名:"  value="尤晓玲"  center />
+      <van-cell title="姓名:尤晓玲"  center />
     </div>
     <div class="inline-cell">
-      <van-cell title="学号:" value="22000953" center />
+      <van-cell title="学号:22000953" center />
     </div>
     <div class="inline-cell">
-      <van-cell title="短期目标:" value="成为前端技术“砖家”" center />
+      <van-cell title="短期目标:成为前端技术“砖家”" center />
     </div>
     <div class="inline-cell">
-      <van-cell title="个性说说：" value="高山仰止，景行行止" center />
+      <van-cell title="个性说说：高山仰止，景行行止" center />
     </div>
   </div>
 </template>
@@ -61,6 +61,7 @@ export default {
   color: #f1c367;
   font-size: 4vh;
   margin-bottom: 20px;
+  
 }
 
 .inline-cell {
@@ -68,8 +69,7 @@ export default {
   align-items: center;
 }
 
-.inline-cell .van-cell__title,
-.inline-cell .van-cell__value {
+.inline-cell .van-cell__title {
   display: inline-block;
   vertical-align: middle;
   
@@ -78,7 +78,7 @@ export default {
 .inline-cell .van-cell {
   display: inline-flex;
   align-items: center;
-  width: fit-content;
+  width: 40vh;
   padding: 6px;
   font-size: 2.5vh;
   background-color: transparent;
